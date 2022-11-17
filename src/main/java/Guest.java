@@ -36,8 +36,13 @@ public class Guest {
         return this.sobrietyLevel;
     }
 
+    public boolean getIsGuestIsBanned() {
+        return guestIsBanned;
+    }
 
-
+    public boolean getIsCurrencyIsPound() {
+        return currencyIsPound;
+    }
 }
 
 

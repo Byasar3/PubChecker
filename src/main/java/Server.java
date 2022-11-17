@@ -6,6 +6,15 @@ public class Server {
         if (guest.getWallet() < 5.00) {
             return false;
         }
+        if(guest.getSobrietyLevel() < 50){
+            return false;
+        }
+        if (guest.getIsGuestIsBanned()){
+            return false;
+        }
+        if (guest.getIsCurrencyIsPound()){
+            return true;
+        }
 
         return true;
     }

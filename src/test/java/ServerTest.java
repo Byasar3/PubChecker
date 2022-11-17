@@ -11,15 +11,17 @@ public class ServerTest {
     Guest noMoney;
     Guest yesMoney;
     Guest soberSusan;
+    Guest notBannedNorris;
 
 
     @BeforeEach
     public void setUp(){
         server = new Server();
-        guest = new Guest("Berna", 25, 50.00, 100, false, true);
+        guest = new Guest("Berna", 25, 50.00, 100, false, false);
         noMoney = new Guest("John", 19,2, 60, false, true);
         yesMoney = new Guest("John'sFriend", 19, 10, 55,false,true);
         soberSusan = new Guest("Susan", 38,1000,99,false,true);
+        notBannedNorris = new Guest( "Norris", 40, 800, 70, false, true);
     }
 
     // TODO: test that guest can only get served if over 18
@@ -35,7 +37,7 @@ public class ServerTest {
         boolean result = server.canServeGuest(yesMoney);
         assertThat(result).isEqualTo(true);
     }
-    // also doesn't serve the peoples with no money
+    // TODO: also doesn't serve the peoples with no money
     @Test
     public void doesNotServeBrokePersons(){
         boolean result = server.canServeGuest(noMoney);
@@ -43,11 +45,27 @@ public class ServerTest {
     }
 
     // TODO: test that guest can only get served if sober enough (set sobriety level on guest)
-
+    @Test
+    public void canServeSober(){
+        boolean result = server.canServeGuest(soberSusan);
+        assertThat(result).isEqualTo(true);
+    }
 
     // TODO: test that guest can only get served if guest is not banned from the pub
 
+    @Test
+    public void canServeIfNotBanned(){
+        boolean result = server.canServeGuest(notBannedNorris);
+        assertThat(result).isEqualTo(true);
+    }
+
     // TODO: test that guest can only get served if guest can pay in local currency (add £ char as currency)
+
+    @Test
+    public void canServeIfPound(){
+        boolean result = server.canServeGuest(guest);
+        assertThat(result).isEqualTo(true);
+    }
 
     // EXTENSIONS
 
